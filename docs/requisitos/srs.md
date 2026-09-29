@@ -268,6 +268,15 @@ enlazar a los términos de esta sección, pero no los definirá de nuevo.
 
 | Término | Definición en Proyecto Simbiosis | Fuente |
 | --- | --- | --- |
+| Nutricionista | Rol profesional acreditado, común para médicos y nutricionistas, que puede publicar recetas | A3 s1.2, s1.3 y 3|
+| Acreditación profesional | Procedimiento por el que una persona demuestra su condición profesional para actuar como nutricionista |A3 s1.3|
+| Receta aceptada| Receta adecuada al perfil, las alergias o las restricciones alimentarias de un paciente. La plataforma no modifica automáticamente sus ingredientes o cantidades | DVA s1.1 y 2.1 A3 s3|
+| EII | Enfermedades Inflamatorias Intestinales | DVA 1.2|
+| Coordinador | Usuario responsable de supervisar la actividad en la plataforma. Actúa como moderador| DVA 3.1 |
+| Pacientes | Usuarios normales que quieren preguntar por un malestar, una receta, o simplemente hablar en el foro | DAATO 2.2.3 | 
+| Cuidadores | Familiares o profesionales que asisten a los pacientes en la gestión de su dieta, actuando como usuarios secundarios que buscan y administran recetas en nombre de los pacientes.| DVA 3.1|
+| Cuenta de cuidador inactiva | Cuando un cuidador lleve al menos 3 meses y menos de 1 año, sin asociaciones a pacientes | DAATO 2.2.4 |
+
 
 ## 10. Modelos de análisis
 
