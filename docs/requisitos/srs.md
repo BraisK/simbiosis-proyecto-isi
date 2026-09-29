@@ -270,10 +270,11 @@ enlazar a los términos de esta sección, pero no los definirá de nuevo.
 | --- | --- | --- |
 | Nutricionista | Rol profesional acreditado, común para médicos y nutricionistas, que puede publicar recetas | A3 s1.2, s1.3 y 3|
 | Acreditación profesional | Procedimiento por el que una persona demuestra su condición profesional para actuar como nutricionista |A3 s1.3|
-| Receta aceptada| Receta adecuada al perfil, las alergias o las restricciones alimentarias de un paciente. La plataforma no modifica automáticamente sus ingredientes o cantidades | DVA s1.1 y 2.1 A3 s3|
+| Receta aceptada| Receta adecuada al perfil, las alergias o las restricciones alimentarias de un paciente. La plataforma no modifica automáticamente sus ingredientes o cantidades | DVA s1.1 y 2.1|
+| Receta validada| Receta valida para el perfil, teniendo en cuenta sus alergias o las restricciones alimentarias de un paciente | DVA s1.2 y 2.1 A3 s3|
 | EII | Enfermedades Inflamatorias Intestinales | DVA 1.2|
 | Coordinador | Usuario responsable de supervisar la actividad en la plataforma. Actúa como moderador| DVA 3.1 |
-| Pacientes | Usuarios normales que quieren preguntar por un malestar, una receta, o simplemente hablar en el foro | DAATO 2.2.3 | 
+| Pacientes | Usuarios con la enfermedad EII y que está registrada en la plataforma | DAATO 2.2.3 | 
 | Cuidadores | Familiares o profesionales que asisten a los pacientes en la gestión de su dieta, actuando como usuarios secundarios que buscan y administran recetas en nombre de los pacientes.| DVA 3.1|
 | Cuenta de cuidador inactiva | Cuando un cuidador lleve al menos 3 meses y menos de 1 año, sin asociaciones a pacientes | DAATO 2.2.4 |
 
