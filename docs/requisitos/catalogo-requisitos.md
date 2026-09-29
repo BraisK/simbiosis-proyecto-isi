@@ -280,6 +280,22 @@ FR-017 se conserva para no perder el identificador histórico, pero su estado es
 | --- | --- | --- | --- | --- | --- | --- |
 | NFR-07 |NFR-Q (Eficiencia; Escalabilidad; Mantenibilidad) |La plataforma mantendrá los objetivos de capacidad y rendimiento definidos para la primera versión sin intervención manual del personal de la organización.| G | -  | Prueba de carga automatizada con 100 usuarios concurrentes y 10 operaciones/s durante 30 min; comprobar mediante registros de monitorización, ausencia de intervención manual. | - |
 | NFR-01 | NFR-Q (Disponibilidad) | La plataforma alcanzará una disponibilidad mínima del 99,5% en cada mes natural | G | - | Mediante comprobaciones externas cada cinco minutos | - |
+| NFR-12 | NFR-R (Despliegue) | La plataforma desplegará en una infraestructura en la nube gestionada por un proveedor externo | G | - | - | - |
+| NFR-02 | NFR-I (Interfaz) | La plataforma implementará una interfaz para gestionar su dieta | G | - 
+| Mediante encuestas a los usuarios sobre la comodidad de la nueva función | - |
+| NFR-03 | NFR-I (Interfaz) | La plataforma tendrá en las recetas un icono para ver de forma visual, cual es su valoración (Ej: 5 estrellas) | G | - 
+| Mediante pruebas de puntuación de recetas | - |
+| NFR-04 | NFR-I (Interfaz) | La plataforma tendrá una interfaz responsivo, que se ajustará al tamaño de cada pantalla | G | - | Usando dispositivos de diferente tamaño de pantalla para comprobar que se vea bien en todos | - |
+| NFR-05 | NFR-I (Calidad) | La plataforma implementará un sistema de inicio de sesión mediante Googles | G | FR-018 
+| Mediante pruebas de inicio de sesión con diferentes cuentas de Google | - |
+| NFR-06 | NFR-Q (Calidad) | La plataforma permitirá a los usuarios seguir hilos de discusión y listado | G | FR-029 
+| Mediante un apartado donde se aparezcan los hilos guardados | - |
+| NFR-07 | NFR-Q (Calidad) | La plataforma permitirá ordenar los resultados de búsqueda mediante unos filtros  | G | FR-099 
+| Mediante el uso de test que comprueben que los filtros de búsqueda dan los resultados esperados | - |
+| NFR-08 | NFR-I (Idioma) | La plataforma tendrá dos idiomas en la primera versión (Gallego y Castellano) | G | - 
+| - | - |
+
+
 
 Categorías y atributos: 
 1) Requisitos de calidad (NFR-Q): Rendimiento, Usabilidad, Seguridad, Fiabilidad, Disponibilidad, Modificabilidad, Portabilidad, Eficiencia, Escalabilidad, Verificabilidad / Testabilidad, Robustez, Seguridad funcional (safety), Integridad, Reusabilidad, Instalabilidad.
