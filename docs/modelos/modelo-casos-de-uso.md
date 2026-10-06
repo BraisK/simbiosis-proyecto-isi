@@ -60,7 +60,7 @@ Para cada vista, incluye un título, una frase sobre su alcance y el diagrama. T
 
 ### 4.1 Primera vista
 
-**Título:** [Indica el título de la vista.]
+**Título:** Casos-de-uso-acceso-cuentas-ayuda
 
 **Alcance:** [Explica qué funciones representa esta vista.]
 
