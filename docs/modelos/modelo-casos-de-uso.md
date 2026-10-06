@@ -30,6 +30,7 @@ Registra los roles externos que participan en las funciones representadas. Un ac
 | --- | --- |
 | Usuario | Persona que interactúa con el Proyecto simbiosis |
 | Usuario Registrado | Persona que dispone de una cuenta en la plataforma |
+| Usuario No Registrado | Persona que no dispone de una cuenta en la plataforma |
 
 Mantén los mismos nombres en las tablas, los diagramas y las descripciones.
 
@@ -42,6 +43,8 @@ Registra los casos que aparecen en el modelo. Asigna a cada caso un identificado
 | Identificador | Nombre | Objetivo | Participantes |
 | --- | --- | --- | --- |
 | UC-05 | Gestionar perfil | Gestionar los datos personales y preferencias de la cuenta propia | Actor principal: Usuario Registrado. No se identifica actor de apoyo para este caso. |
+| UC- | Registrarse | Registrarse en la plataforma y solicitar cambio de rol | Actor Principal: Usuario No Registrado. Actor Secundario: Usuario Registrado |
+| UC- | Iniciar Sesión | Iniciar sesión o restableces contraseña | Actor principal: Usuario No Registrado. Actor secundario: Usuario Registrado. |
 
 [Indica los actores que participan. Si procede, distingue el actor principal, que busca alcanzar el objetivo del caso de uso y normalmente inicia la interacción, de los actores de apoyo, que proporcionan servicios o información al sistema.]
 
@@ -100,6 +103,8 @@ En E1 basta con un respaldo breve del diagrama. La tabla permite ampliar la traz
 | Elemento del modelo | UR y FR de referencia | NFR pertinentes | Relación con los requisitos |
 | --- | --- | --- | --- |
 | UC-05-Gestionar perfil | UR-03; FR-019 | NFR-010 G | FR-019 permite modificar datos personales y preferencias, pero excluye alias y correo. NFR-010 condiciona la accesibilidad de esta función. |
+| UC- Registrarse | UR-1; FR-001, FR-002, FR-003, FR-004, FR-005, FR-007, FR-008, FR-009, FR-010, FR-011, FR-012, FR-013, FR-188, FR-189, FR-214 y FR-215 | | |
+| UC- Iniciar Sesión | UR-2; FR-015, FR-016 | | FR-015 permite al usuario iniciar sesión. FR-016 envía un correo al correo asociado a la cuenta para restablecer la contraseña |
 
 Consulta el [catálogo canónico](../requisitos/catalogo-requisitos.md) y la [SRS](../requisitos/srs.md). Si falta una condición, indica que está pendiente de aclaración. No la presentes como un requisito confirmado.
 
