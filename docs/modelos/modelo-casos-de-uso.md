@@ -223,47 +223,129 @@ Los apartados 6.1 y 6.2 corresponden a las descripciones detalladas de UC-05 y U
 
 ### 6.1 Descripción detallada UC-05 — Actualizar perfil
 
-**Identificador y nombre del caso de uso:** [Indica el caso.]
+**Identificador y nombre del caso de uso:** UC-05 - Actualizar perfil
 
-**Objetivo:** [Explica qué resultado pretende obtener el participante.]
+**Objetivo:** El usuario quiere modificar los datos de su propio perfil y guardarlos
 
-**Participantes:** [Indica el actor principal y los actores de apoyo, si los hay.]
+**Participantes:** Actor principal: Usuario Registrado
 
-**Precondiciones:** [Indica qué se da por cumplido al comenzar. Las comprobaciones que realiza el sistema pertenecen al flujo.]
+**Precondiciones:** El usuario tiene que estar registrado y logueado
 
-**Inicio:** [Indica qué acción o suceso inicia el caso.]
+**Inicio:** 
+El usuario solicita modificar su propio perfil
 
-**Escenario principal de éxito:** [Describe la secuencia entre los participantes y el sistema.]
-
+**Escenario principal de éxito:** 
+1. El usuario solicita modificar su perfil
+4. El usuario intenta cambiar datos que se pueden modificar(nombre completo, teléfono, dirección postal, y preferencias dietéticas)
+5. Los datos introducidos son válidos
+6. El usuario solicita el guardado
+7. El sistema guarda los cambios
+8. El sistema avisa al usuario que el perfil se ha actualizado 
 **Extensiones (flujos alternativos):** [Vincula cada variación a un paso. Indica cómo continúa o termina.]
+2a. El usuario intenta modificar el alias
+  - El sistema no le deja modificarlo
+  - El sistema avisa que no se puede modificar el alias
+  - El flujo vuelve al paso 2
+    
+2b. El usuario intenta modificar el correo electrónico
+  - El sistema no le deja modificarlo
+  - El sistema avisa que no se puede modificar el alias
+  - El flujo vuelve al paso 2
 
-**Postcondiciones:** [Indica qué queda establecido con éxito y qué se conserva o cambia si el caso termina sin éxito o se cancela. Una consulta no requiere modificar datos para alcanzar su objetivo.]
+3a. El usuario introduce datos no validos
+  - El sistema detecta que los datos son invalidos
+  - El sistema no guarda los datos
+  - El sistema no borra los datos introducidos
+  - El sistema avisa que datos son invalidos
+  - El sistema explica como pueden corregirse
+  - El flujo vuelve al paso 2
 
-**Reglas y NFR pertinentes:** [Remite a los requisitos y actas que condicionan el comportamiento.]
+4a. El usuario cancela el guardado de los cambios
+  - El sistema avisa al usuario que se cancelado el guardado
+  - El sistema borra los datos introducidos
+  - El sistema deja los datos que estaban establecidos antes de iniciar el proceso
+  - El proceso acaba
 
-**Preguntas abiertas:** [Registra solo las cuestiones necesarias que las fuentes no resuelvan. Si no hay preguntas para el alcance descrito, indícalo.]
+5a. El sistema no es capaz de guardar los datos
+  - El sistema avisa que no se han guardado los datos
+  - El sistema mantiene los datos introducios
+  - El flujo vuelve al paso 4
+
+6a. El sistema no es capaz de avisar al usuario que su perfil se ha actualizado
+  - El sistema envía un correo confirmando la actualización
+  - El proceso termina
+**Postcondiciones:**
+En caso de éxito, el sistema guarda los cambios y confirma al usuario de estos cambios
+En caso de cancelar, el sistema no guarda los cambios y deja los valores anteriores. Además avisa al usuario que se ha cancelado correctamente
+En caso de no éxito, el sistema no guarda los cambios y avisa al usuario que no se ha podido guardar los cambios
+
+**Reglas y NFR pertinentes:** 
+UR-03 y FR-019: Actualización de información personal y preferencias; exclusión del alias y del correo electrónico.
+
+**Preguntas abiertas:** 
+No se requieren preguntas detalladas
 
 ### 6.2 Descripción detallada UC-21 — Buscar recetas
 
-**Identificador y nombre del caso de uso:** [Indica el caso.]
+**Identificador y nombre del caso de uso:** UC-21 - Buscar recetas
 
-**Objetivo:** [Explica qué resultado pretende obtener el participante.]
+**Objetivo:** 
+Un usuario registrado quiere localizar una receta que cumplas sus criterios y consultar sus detalles
 
-**Participantes:** [Indica el actor principal y los actores de apoyo, si los hay.]
+**Participantes:** 
+Actor principal: Usuario Registrado
 
-**Precondiciones:** [Indica qué se da por cumplido al comenzar. Las comprobaciones que realiza el sistema pertenecen al flujo.]
+**Precondiciones:** 
+El usuario tiene que estar registrado y logueado
 
-**Inicio:** [Indica qué acción o suceso inicia el caso.]
+**Inicio:** 
+El usuario intenta hacer una búsqueda de una receta
 
-**Escenario principal de éxito:** [Describe la secuencia entre los participantes y el sistema.]
+**Escenario principal de éxito:** 
+1. El usuario comienza a hacer una búsqueda
+2. El sistema muestra los filtros de búsqueda
+3. El usuario introduce los filtros de la búsqueda
+4. Los datos introducidos son válidos
+5. El usuario solicita la búsqueda de las recetas
+6. El sistema filtra las recetas que cumplan con los filtros
+7. El sistema muestra las recetas que se adecuen a los filtros
+8. El usuario da por finalizada la busqueda 
 
-**Extensiones (flujos alternativos):** [Vincula cada variación a un paso. Indica cómo continúa o termina.]
+**Extensiones (flujos alternativos):** 
+3a. El usuario no introduce ningún filtro
+  - El sistema solicita introducir un filtro
+  - El flujo vuelve al paso 2
 
-**Postcondiciones:** [Indica qué queda establecido con éxito y qué se conserva o cambia si el caso termina sin éxito o se cancela. Una consulta no requiere modificar datos para alcanzar su objetivo.]
+4a. Los datos introducidos son invalidos
+  - El sistema avisa en que ingredientes está el error
+  - El sistema obliga a cambiar el estado del ingrediente(incluirlo, excluirlo o eliminarlo de la busqueda)
+  - El flujo vuelve al paso 3
 
-**Reglas y NFR pertinentes:** [Remite a los requisitos y actas que condicionan el comportamiento.]
+6a. El sistema no es capaz de realizar la busqueda
+  - El sistema avisa al usuario que se ha producido un error
+  - El sistema guarda los filtros introducidos
+  - El flujo vuelve al paso 5
 
-**Preguntas abiertas:** [Registra solo las cuestiones necesarias que las fuentes no resuelvan. Si no hay preguntas para el alcance descrito, indícalo.]
+7a. El sistema no encuentra ninguna receta que cumpla con los filtros
+  - El sistema avisa que no se han encontrado recetas con esas características
+  - El sistema no borra los filtros
+  - El flujo vuelve al paso 3
+
+7b. El sistema no muestra las recetas que se adecuen con los criterios
+  - El sistema avisa al usuario que se ha producido un error
+  - El sistema guarda los filtros de búsqueda
+  - El flujo vuelve al paso 5
+
+
+**Postcondiciones:**
+Al finalizar la búsqueda con éxito, los datos del filtro se mantienen
+
+**Reglas y NFR pertinentes:** 
+ UR-08; FR-085, FR-086, FR-087, FR-089, FR-099, FR-102 y FR-119: Texto, ingredientes, exclusiones, vistas previas, orden por fecha, ayuda sin resultados y acceso a búsqueda avanzada.
+ FR-056, FR-066 y FR-192: Datos de una receta, insignia de validación e identidad pública mediante alias.
+ 
+**Preguntas abiertas:** 
+No se requieren preguntas detalladas
 
 ## 7 Continuidad entre iteraciones
 
