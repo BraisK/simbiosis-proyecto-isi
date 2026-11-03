@@ -2,7 +2,7 @@
 
 | Versión | Fecha | Estado |
 | --- | --- | --- |
-| 2.4 | 19/10/2026 | Revisado |
+| 2.5 | 23/10/2026 | Revisado; descripciones detalladas de UC-05 y UC-21 incorporadas |
 
 **Iteración de referencia:** E2. Este documento recoge el modelo acumulado después de incorporar la vista de salud y recetas.
 
@@ -76,7 +76,7 @@ El registro de auditoría forma parte del comportamiento del sistema. No requier
 
 ## 3 Casos de uso
 
-Los objetivos de esta tabla son resúmenes. Las descripciones detalladas quedan pendientes en el apartado 6.
+Los objetivos de esta tabla son resúmenes. Las descripciones detalladas disponibles se recogen en el apartado 6.
 
 | Identificador | Nombre | Objetivo | Participantes |
 | --- | --- | --- | --- |
@@ -207,7 +207,7 @@ NFR-002, NFR-003, NFR-008, NFR-009 y NFR-014 condicionan los datos, la recuperac
 
 ## 6 Descripciones de los casos de uso
 
-**Estado de la especificación.** Las descripciones detalladas de UC-05 y UC-21 están pendientes de elaboración. Las actas aprobadas definen el comportamiento acordado y delimitan el alcance de estas descripciones.
+**Estado de la especificación.** Las descripciones detalladas de UC-05 y UC-21 se recogen en los apartados 6.1 y 6.2. Las actas aprobadas definen el comportamiento acordado y delimitan su alcance.
 
 **Alcance de las descripciones.** Las actas aprobadas de UC-05 y UC-21, v1.1, complementan el catálogo y concretan el siguiente alcance:
 
@@ -223,129 +223,138 @@ Los apartados 6.1 y 6.2 corresponden a las descripciones detalladas de UC-05 y U
 
 ### 6.1 Descripción detallada UC-05 — Actualizar perfil
 
-**Identificador y nombre del caso de uso:** UC-05 - Actualizar perfil
+**Identificador y nombre del caso de uso:** UC-05 · Actualizar perfil.
 
-**Objetivo:** El usuario quiere modificar los datos de su propio perfil y guardarlos
+**Objetivo:** actualizar los datos personales, de contacto y las preferencias del perfil propio.
 
-**Participantes:** Actor principal: Usuario Registrado
+**Participantes:** Usuario registrado, como actor principal. No se identifican actores de apoyo en este recorrido.
 
-**Precondiciones:** El usuario tiene que estar registrado y logueado
+**Precondiciones:** el usuario dispone de una cuenta activa y tiene una sesión iniciada. La validez de los nuevos datos se comprueba durante el caso de uso.
 
-**Inicio:** 
-El usuario solicita modificar su propio perfil
+**Inicio:** el usuario solicita actualizar su perfil.
 
-**Escenario principal de éxito:** 
-1. El usuario solicita modificar su perfil
-4. El usuario intenta cambiar datos que se pueden modificar(nombre completo, teléfono, dirección postal, y preferencias dietéticas)
-5. Los datos introducidos son válidos
-6. El usuario solicita el guardado
-7. El sistema guarda los cambios
-8. El sistema avisa al usuario que el perfil se ha actualizado 
-**Extensiones (flujos alternativos):** [Vincula cada variación a un paso. Indica cómo continúa o termina.]
-2a. El usuario intenta modificar el alias
-  - El sistema no le deja modificarlo
-  - El sistema avisa que no se puede modificar el alias
-  - El flujo vuelve al paso 2
-    
-2b. El usuario intenta modificar el correo electrónico
-  - El sistema no le deja modificarlo
-  - El sistema avisa que no se puede modificar el alias
-  - El flujo vuelve al paso 2
+**Escenario principal de éxito:**
 
-3a. El usuario introduce datos no validos
-  - El sistema detecta que los datos son invalidos
-  - El sistema no guarda los datos
-  - El sistema no borra los datos introducidos
-  - El sistema avisa que datos son invalidos
-  - El sistema explica como pueden corregirse
-  - El flujo vuelve al paso 2
+1. El usuario solicita actualizar su perfil.
+2. El sistema presenta los datos actuales y distingue los valores editables de los que permanecen fijos.
+3. El usuario modifica los valores permitidos.
+4. El usuario solicita guardar los cambios.
+5. El sistema comprueba los datos según las reglas del acta.
+6. El sistema guarda conjuntamente los cambios en el perfil.
+7. El sistema confirma la actualización.
 
-4a. El usuario cancela el guardado de los cambios
-  - El sistema avisa al usuario que se cancelado el guardado
-  - El sistema borra los datos introducidos
-  - El sistema deja los datos que estaban establecidos antes de iniciar el proceso
-  - El proceso acaba
+**Extensiones (flujos alternativos):**
 
-5a. El sistema no es capaz de guardar los datos
-  - El sistema avisa que no se han guardado los datos
-  - El sistema mantiene los datos introducios
-  - El flujo vuelve al paso 4
+**5.a. Falta un dato obligatorio o un dato no cumple su formato:**
 
-6a. El sistema no es capaz de avisar al usuario que su perfil se ha actualizado
-  - El sistema envía un correo confirmando la actualización
-  - El proceso termina
-**Postcondiciones:**
-En caso de éxito, el sistema guarda los cambios y confirma al usuario de estos cambios
-En caso de cancelar, el sistema no guarda los cambios y deja los valores anteriores. Además avisa al usuario que se ha cancelado correctamente
-En caso de no éxito, el sistema no guarda los cambios y avisa al usuario que no se ha podido guardar los cambios
+1. El sistema identifica los campos afectados y explica la corrección necesaria.
+2. El sistema conserva los valores introducidos y no guarda ningún cambio.
+3. El usuario corrige los datos.
+4. El flujo vuelve al paso 4.
 
-**Reglas y NFR pertinentes:** 
-UR-03 y FR-019: Actualización de información personal y preferencias; exclusión del alias y del correo electrónico.
+**\*.a. El usuario cancela antes de guardar:**
 
-**Preguntas abiertas:** 
-No se requieren preguntas detalladas
+1. El sistema descarta los cambios de la edición.
+2. El perfil conserva los valores guardados anteriormente.
+3. El caso de uso termina sin actualizar el perfil.
+
+**6.a. El sistema no puede guardar:**
+
+1. El sistema informa de que la actualización no se ha completado.
+2. Los datos guardados permanecen sin cambios y se conservan los valores introducidos.
+3. Si el usuario solicita reintentar el guardado, el flujo vuelve al paso 4. Si decide cancelar, se aplica la extensión \*.a.
+
+**Postcondiciones:** con éxito, el perfil contiene los cambios guardados y el usuario recibe la confirmación. El alias y el correo electrónico mantienen sus valores. Si los datos son inválidos, el guardado falla o el usuario cancela, el perfil conserva los valores anteriores; no queda una actualización parcial.
+
+**Reglas y NFR pertinentes:** UR-03, FR-019 y NFR-010, conforme al [respaldo del apartado 5](#5-respaldo-en-los-requisitos), y [acta de UC-05](../captura/acta-acuerdos-uc-05-actualizar-perfil.md), apartado 2. Se pueden modificar el nombre completo, el teléfono, la dirección postal y las preferencias dietéticas. El alias y el correo electrónico son de consulta. El nombre y el teléfono son obligatorios; los valores formados solo por espacios se consideran vacíos y el teléfono admite los prefijos internacionales previstos para el registro. La dirección y las preferencias son opcionales; se pueden seleccionar ninguna, una o varias de estas preferencias: vegana, sin gluten y baja en carbohidratos. Estas preferencias no modifican datos de salud ni alergias.
+
+**Preguntas abiertas:** no se requieren preguntas adicionales para el comportamiento cubierto por el acta. Cualquier discrepancia nueva entre las fuentes deberá registrarse antes de ampliar el recorrido.
 
 ### 6.2 Descripción detallada UC-21 — Buscar recetas
 
-**Identificador y nombre del caso de uso:** UC-21 - Buscar recetas
+**Identificador y nombre del caso de uso:** UC-21 · Buscar recetas.
 
-**Objetivo:** 
-Un usuario registrado quiere localizar una receta que cumplas sus criterios y consultar sus detalles
+**Objetivo:** localizar una receta que cumpla los criterios del usuario y consultar su detalle.
 
-**Participantes:** 
-Actor principal: Usuario Registrado
+**Participantes:** Usuario registrado, como actor principal. No se identifican actores de apoyo en este recorrido.
 
-**Precondiciones:** 
-El usuario tiene que estar registrado y logueado
+**Precondiciones:** el usuario está registrado y tiene una sesión iniciada. La existencia de recetas coincidentes se comprueba al ejecutar la búsqueda.
 
-**Inicio:** 
-El usuario intenta hacer una búsqueda de una receta
+**Inicio:** el usuario solicita buscar recetas.
 
-**Escenario principal de éxito:** 
-1. El usuario comienza a hacer una búsqueda
-2. El sistema muestra los filtros de búsqueda
-3. El usuario introduce los filtros de la búsqueda
-4. Los datos introducidos son válidos
-5. El usuario solicita la búsqueda de las recetas
-6. El sistema filtra las recetas que cumplan con los filtros
-7. El sistema muestra las recetas que se adecuen a los filtros
-8. El usuario da por finalizada la busqueda 
+**Escenario principal de éxito:** parte de una búsqueda por ingrediente que obtiene resultados.
 
-**Extensiones (flujos alternativos):** 
-3a. El usuario no introduce ningún filtro
-  - El sistema solicita introducir un filtro
-  - El flujo vuelve al paso 2
+1. El usuario solicita buscar recetas.
+2. El sistema permite indicar los criterios de búsqueda.
+3. El usuario selecciona un ingrediente que desea encontrar.
+4. El usuario solicita ejecutar la búsqueda.
+5. El sistema comprueba que los criterios pueden aplicarse.
+6. El sistema obtiene las recetas que cumplen los criterios, conforme al acta.
+7. El sistema presenta las vistas previas en el orden establecido en el acta.
+8. El usuario selecciona una receta.
+9. El sistema presenta su detalle.
+10. El caso de uso finaliza.
 
-4a. Los datos introducidos son invalidos
-  - El sistema avisa en que ingredientes está el error
-  - El sistema obliga a cambiar el estado del ingrediente(incluirlo, excluirlo o eliminarlo de la busqueda)
-  - El flujo vuelve al paso 3
+**Extensiones (flujos alternativos):**
 
-6a. El sistema no es capaz de realizar la busqueda
-  - El sistema avisa al usuario que se ha producido un error
-  - El sistema guarda los filtros introducidos
-  - El flujo vuelve al paso 5
+**3.a. El usuario busca mediante una palabra o frase:**
 
-7a. El sistema no encuentra ninguna receta que cumpla con los filtros
-  - El sistema avisa que no se han encontrado recetas con esas características
-  - El sistema no borra los filtros
-  - El flujo vuelve al paso 3
+1. El usuario introduce el texto de búsqueda en lugar de seleccionar un ingrediente.
+2. El flujo continúa en el paso 4. En el paso 6, el sistema busca el texto en el título o en la descripción breve, sin distinguir mayúsculas ni tildes. Una frase debe aparecer seguida y en el mismo orden.
 
-7b. El sistema no muestra las recetas que se adecuen con los criterios
-  - El sistema avisa al usuario que se ha producido un error
-  - El sistema guarda los filtros de búsqueda
-  - El flujo vuelve al paso 5
+**3.b. El usuario excluye ingredientes:**
 
+1. El usuario selecciona los ingredientes que desea excluir.
+2. El flujo continúa en el paso 4. En el paso 6, el sistema excluye las recetas que contengan alguno de esos ingredientes.
 
-**Postcondiciones:**
-Al finalizar la búsqueda con éxito, los datos del filtro se mantienen
+**3.c. El usuario combina criterios:**
 
-**Reglas y NFR pertinentes:** 
- UR-08; FR-085, FR-086, FR-087, FR-089, FR-099, FR-102 y FR-119: Texto, ingredientes, exclusiones, vistas previas, orden por fecha, ayuda sin resultados y acceso a búsqueda avanzada.
- FR-056, FR-066 y FR-192: Datos de una receta, insignia de validación e identidad pública mediante alias.
- 
-**Preguntas abiertas:** 
-No se requieren preguntas detalladas
+1. El usuario indica varios de los criterios contemplados en el acta.
+2. El flujo continúa en el paso 4. En el paso 6, cada receta debe cumplir todos los criterios indicados.
+
+**5.a. No se ha indicado ningún criterio:**
+
+1. El sistema solicita al menos un criterio y no ejecuta la búsqueda.
+2. El flujo vuelve al paso 3.
+
+**5.b. Un ingrediente se ha incluido y excluido a la vez:**
+
+1. El sistema señala el conflicto, conserva los criterios y no ejecuta la búsqueda.
+2. El usuario corrige la selección.
+3. El flujo vuelve al paso 4.
+
+**6.a. La búsqueda no obtiene resultados:**
+
+1. El sistema informa de que no hay resultados y conserva los criterios.
+2. Si el texto admite una corrección ortográfica, la propone; en otro caso, muestra alternativas relacionadas cuando dispone de ellas. Si no hay sugerencias, lo indica. Las sugerencias se presentan separadas de los resultados y conservan los ingredientes excluidos.
+3. Si el usuario acepta una sugerencia, el sistema presenta los criterios propuestos. Solo si el usuario solicita ejecutar otra búsqueda, el flujo vuelve al paso 5.
+4. Si el usuario modifica los criterios por su cuenta, el flujo vuelve al paso 3. Si decide terminar, el caso finaliza sin consultar una receta.
+
+**6.b. El sistema no puede completar la búsqueda:**
+
+1. El sistema informa del fallo, sin presentarlo como ausencia de resultados, y conserva los criterios.
+2. Si el usuario solicita reintentar, el flujo vuelve al paso 5. Si decide terminar, el caso finaliza sin obtener nuevos resultados.
+
+**7.a. Falta una imagen o no hay valoraciones:**
+
+1. El sistema presenta la vista previa con «Sin imagen» o «Sin valoraciones», según corresponda; no muestra un promedio de cero.
+2. El flujo continúa en el paso 8.
+
+**9.a. El usuario vuelve a los resultados:**
+
+1. El sistema presenta los resultados de la última búsqueda y conserva sus criterios y su orden.
+2. El usuario puede seleccionar otra receta y continuar en el paso 8, o modificar los criterios y volver al paso 3.
+
+**9.b. El sistema no puede cargar el detalle:**
+
+1. El sistema informa del fallo y conserva los criterios de la búsqueda.
+2. Si el usuario solicita reintentar, el sistema vuelve a intentar el paso 9. Si decide terminar, el caso finaliza sin consultar ese detalle.
+
+**Postcondiciones:** con éxito, el usuario ha consultado los resultados de una búsqueda y el detalle de una receta seleccionada. Si no obtiene resultados o se produce un fallo, conoce la situación que impidió completar la consulta. Esta descripción no incorpora el registro del historial ni otras modificaciones de datos.
+
+**Reglas y NFR pertinentes:** UR-08; FR-085, FR-086, FR-087, FR-089, FR-099, FR-102 y FR-119; y NFR-004, NFR-005 y NFR-010, conforme al [respaldo del apartado 5](#5-respaldo-en-los-requisitos). Se aplican el [acta de UC-21](../captura/acta-acuerdos-uc-21-buscar-recetas.md), apartado 2, y el [plan de E2](../planificacion/plan-iteracion-e2.md#44-búsqueda-y-consulta-de-recetas), apartado 4.4. Los ingredientes se seleccionan entre los nombres disponibles; todos los incluidos deben estar presentes y ninguno de los excluidos puede aparecer. Solo se muestran recetas publicadas y validadas, ordenadas por fecha de publicación descendente. Cada vista previa incluye título, imagen, calificación promedio y descripción breve, con las indicaciones previstas cuando faltan imagen o valoraciones. El detalle muestra título, imagen si existe, ingredientes, instrucciones, tiempo de cocción, porciones, alias del autor e insignia de validación; FR-056, FR-066 y FR-192 respaldan esos datos. El catálogo no contiene un FR específico para consultar el detalle. No se aplican automáticamente las alergias del perfil.
+
+**Preguntas abiertas:** no se requieren preguntas adicionales para el comportamiento cubierto por el acta. La ausencia de un FR específico para la consulta del detalle queda registrada en el respaldo del modelo; no se resuelve atribuyendo esa función a un requisito distinto.
 
 ## 7 Continuidad entre iteraciones
 
